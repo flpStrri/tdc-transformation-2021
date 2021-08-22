@@ -1,0 +1,13 @@
+name: "Setup Poetry"
+description: "An action to setup https://github.com/python-poetry/poetry"
+inputs:
+  poetry-version:
+    description: "The Python Poetry to be installed"
+    required: false
+    default: "1.1.7"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+          pip install poetry==${{ inputs.poetry-version }}
+      shell: bash

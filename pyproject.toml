@@ -5,6 +5,10 @@ description = "An example of ASGI Application in Python for TDC Transformation 2
 authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
+lint = [
+    { cmd = "black . --check" },
+    { cmd = "isort . --check" },
+]
 
 [tool.poetry.dependencies]
 python = "~3.8"
@@ -16,7 +20,16 @@ pydantic = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
 poethepoet = "^0.10.0"
-flake8 = "^3.9.2"
+isort = "^5.9.3"
+black = "^21.7b0"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 100
+
+[tool.black]
+line_length = 100
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -2,7 +2,6 @@ from src.infrastructure.sqlalchemy import Employee, session
 
 
 class EmployeeRepository:
-
     def fetch_by_id(self, id):
         employee = session.query(Employee).filter(Employee.id == id).first()
 
