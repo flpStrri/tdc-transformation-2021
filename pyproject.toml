@@ -5,7 +5,6 @@ description = "An example of ASGI Application in Python for TDC Transformation 2
 authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
-runserver = { "shell" = "FLASK_APP=src.presentation.api FLASK_ENV=dev flask run --reload" }
 
 [tool.poetry.dependencies]
 python = "~3.8"
@@ -13,7 +12,6 @@ SQLAlchemy = "==1.4.22"
 psycopg2-binary = "==2.9.1"
 alembic = "==1.6.5"
 pymongo = "==3.12.0"
-Flask = "^2.0.1"
 pydantic = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
