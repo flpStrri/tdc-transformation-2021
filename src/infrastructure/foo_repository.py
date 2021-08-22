@@ -1,5 +1,6 @@
 from uuid import uuid4
 
+import bcrypt
 from aiodynamo.client import Table
 from fastapi.logger import logger
 
@@ -15,9 +16,12 @@ class FooRepository:
         if foo_table_item["type"] != "foo":
             raise ValueError("not a foo")
 
+        foo_title: str = foo_table_item["title"]
+        bcrypt.hashpw(foo_title.encode("utf-8"), bcrypt.gensalt(6))
+
         return Foo(
             identifier=foo_table_item["pk"],
-            title=foo_table_item["title"],
+            title=foo_title,
         )
 
     async def load_foo(self, identifier: str) -> Foo:
