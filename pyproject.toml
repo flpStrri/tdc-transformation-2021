@@ -5,6 +5,7 @@ description = "An example of ASGI Application in Python for TDC Transformation 2
 authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
+test = { "shell" = 'docker-compose up -d && PYTHONPATH="$POE_ROOT:$POE_ROOT/src" pytest --cov=src --no-cov-on-fail --cov-report= tests'}
 lint = [
     { cmd = "black . --check" },
     { cmd = "isort . --check" },
@@ -13,11 +14,21 @@ lint = [
 [tool.poetry.dependencies]
 python = "~3.8"
 pydantic = "^1.8.2"
+aiodynamo = "^21.7"
+yarl = "^1.6.3"
+aiohttp = "^3.7.4"
 
 [tool.poetry.dev-dependencies]
 poethepoet = "^0.10.0"
 isort = "^5.9.3"
 black = "^21.7b0"
+pytest = "^6.2.4"
+pytest-xdist = "^2.3.0"
+pytest-aiohttp = "^0.3.0"
+pytest-asyncio = "^0.15.1"
+pytest-cov = "^2.12.1"
+pytest-env = "^0.6.2"
+pytest-randomly = "^3.8.0"
 
 [tool.isort]
 profile = "black"
@@ -26,6 +37,16 @@ line_length = 100
 
 [tool.black]
 line_length = 100
+
+[tool.pytest.ini_options]
+filterwarnings = "ignore::DeprecationWarning"
+addopts = "-v"
+env = [
+    "D:AWS_REGION=us-east-1",
+    "D:DYNAMODB_URL=http://localhost:8000",
+    "D:AWS_ACCESS_KEY_ID=local-key",
+    "D:AWS_SECRET_ACCESS_KEY=local-secret",
+]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
