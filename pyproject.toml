@@ -11,6 +11,7 @@ lint = [
     { cmd = "isort . --check" },
 ]
 runserver = { "shell" = 'docker compose down && docker compose up --build --remove-orphans'}
+load = { "shell" = 'k6 run k6/test_script.js'}
 
 [tool.poetry.dependencies]
 python = "~3.8"
