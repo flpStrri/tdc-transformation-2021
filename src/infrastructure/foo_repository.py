@@ -1,4 +1,7 @@
+from uuid import uuid4
+
 from aiodynamo.client import Table
+from fastapi.logger import logger
 
 from domain.foo import Foo
 
@@ -18,6 +21,13 @@ class FooRepository:
         )
 
     async def load_foo(self, identifier: str) -> Foo:
+        request_id = uuid4().hex
+        logger.info(f"{request_id} >> before loading foos/{identifier}")
+        logger.info(f"{request_id}     >> I/O work on foos/{identifier}")
         foo_table_item = await self.table.get_item({"pk": identifier, "sk": "A"})
+        logger.info(f"{request_id}     << I/O work on foos/{identifier}")
+        logger.info(f"{request_id}     >> before CPU foos/{identifier}")
         decoded_foo = self.decode_foo(foo_table_item)
+        logger.info(f"{request_id}     << after CPU foos/{identifier}")
+        logger.info(f"{request_id} << after loading foos/{identifier}")
         return decoded_foo
