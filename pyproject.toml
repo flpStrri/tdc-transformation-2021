@@ -5,7 +5,7 @@ description = "An example of ASGI Application in Python for TDC Transformation 2
 authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
-test = { "shell" = 'docker-compose up -d dynamodb-local && PYTHONPATH="$POE_ROOT:$POE_ROOT/src" pytest --cov=src --no-cov-on-fail --cov-report= tests'}
+test = { "shell" = 'docker-compose up -d dynamodb-local && PYTHONPATH="$POE_ROOT:$POE_ROOT/src" pytest --cov=src --no-cov-on-fail --cov-report= --cov-fail-under=99 tests'}
 lint = [
     { cmd = "black . --check" },
     { cmd = "isort . --check" },
