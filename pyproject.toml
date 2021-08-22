@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "tdc-transformation-2021"
 version = "0.1.0"
-description = "An example of Hexagonal Architecture in Python for TDC Transformation 2021"
-authors = ["Nicolas Zein <niczein@gmail.com>"]
+description = "An example of ASGI Application in Python for TDC Transformation 2021"
+authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
 runserver = { "shell" = "FLASK_APP=src.presentation.api FLASK_ENV=dev flask run --reload" }
