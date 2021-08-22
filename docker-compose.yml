@@ -8,3 +8,28 @@ services:
     ports:
       - "8000:8000"
     working_dir: /home/dynamodblocal
+  init-dynamo-table:
+    image: amazon/aws-cli
+    restart: on-failure
+    depends_on:
+      - dynamodb-local
+    command: dynamodb create-table --table-name tdc-dev-data --attribute-definitions AttributeName=pk,AttributeType=S AttributeName=sk,AttributeType=S --key-schema AttributeName=pk,KeyType=HASH AttributeName=sk,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://dynamodb:8000
+    links:
+      - dynamodb-local
+    environment:
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: local-key
+      AWS_SECRET_ACCESS_KEY: local-secret
+  app:
+    build: .
+    depends_on:
+      - dynamodb-local
+    ports:
+      - '3000:3000'
+    links:
+      - dynamodb-local
+    environment:
+      AWS_REGION: us-east-1
+      DYNAMODB_URL: http://dynamodb:8000
+      AWS_ACCESS_KEY_ID: local-key
+      AWS_SECRET_ACCESS_KEY: local-secret

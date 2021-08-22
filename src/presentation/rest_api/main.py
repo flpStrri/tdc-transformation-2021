@@ -1,5 +1,8 @@
+import logging
+
 from aiodynamo.errors import ItemNotFound
 from fastapi import FastAPI, HTTPException
+from fastapi.logger import logger
 from fastapi.responses import JSONResponse
 
 from application.foo_service import FooService
@@ -8,6 +11,7 @@ from infrastructure.database import data_table
 from infrastructure.foo_repository import FooRepository
 
 app = FastAPI()
+fast_api_logger = logger
 
 
 @app.get("/foos/{foo_id}")
@@ -19,3 +23,9 @@ async def get_foo(foo_id: str):
             return JSONResponse(loaded_foo.dict())
         except ItemNotFound:
             raise HTTPException(status_code=404, detail="foo not found")
+
+
+if __name__ != "main":
+    gunicorn_logger = logging.getLogger("gunicorn.error")
+    logger.handlers = gunicorn_logger.handlers
+    logger.setLevel(gunicorn_logger.level)

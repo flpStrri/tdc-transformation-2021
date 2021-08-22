@@ -5,19 +5,22 @@ description = "An example of ASGI Application in Python for TDC Transformation 2
 authors = ["João Filipe Storarri <13003392+flpStrri@users.noreply.github.com>"]
 
 [tool.poe.tasks]
-test = { "shell" = 'docker-compose up -d && PYTHONPATH="$POE_ROOT:$POE_ROOT/src" pytest --cov=src --no-cov-on-fail --cov-report= tests'}
+test = { "shell" = 'docker-compose up -d dynamodb-local && PYTHONPATH="$POE_ROOT:$POE_ROOT/src" pytest --cov=src --no-cov-on-fail --cov-report= tests'}
 lint = [
     { cmd = "black . --check" },
     { cmd = "isort . --check" },
 ]
+runserver = { "shell" = 'docker compose down && docker compose up --build --remove-orphans'}
 
 [tool.poetry.dependencies]
 python = "~3.8"
 pydantic = "^1.8.2"
+uvicorn = "^0.15.0"
 fastapi = "^0.68.0"
 aiodynamo = "^21.7"
 yarl = "^1.6.3"
 aiohttp = "^3.7.4"
+gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]
 poethepoet = "^0.10.0"
