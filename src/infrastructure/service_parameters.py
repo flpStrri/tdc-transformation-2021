@@ -22,15 +22,9 @@ class ServiceParameters(UserDict):
     def service_data_table_name(self) -> str:
         return self.get_key("DATA_TABLE", "tdc-dev-data")
 
-    def get_key(self, key: str, default_value: str = "") -> str:
-        value = self.__find_from_environment(key)
-        if value is not None:
-            return value
-        return default_value
-
     @staticmethod
-    def __find_from_environment(key: str):
-        return os.environ.get(key)
+    def get_key(key: str, default_value: str = "") -> str:
+        return os.environ.get(key, default_value)
 
 
 parameters = ServiceParameters()
