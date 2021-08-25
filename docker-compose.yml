@@ -25,7 +25,7 @@ services:
     restart: on-failure
     depends_on:
       - init-dynamo-table
-    command: dynamodb batch-write-item --request-items '{"tdc-dev-data":[{"PutRequest":{"Item":{"pk":{"S":"bar"},"sk":{"S":"A"},"title":{"S":"Bar"},"type":{"S":"foo"}}}},{"PutRequest":{"Item":{"pk":{"S":"baz"},"sk":{"S":"A"},"title":{"S":"Baz"},"type":{"S":"foo"}}}},{"PutRequest":{"Item":{"pk":{"S":"foo"},"sk":{"S":"A"},"title":{"S":"Foo"},"type":{"S":"foo"}}}}]}' --endpoint-url http://dynamodb:8000
+    command: dynamodb batch-write-item --request-items '{"tdc-dev-data":[{"PutRequest":{"Item":{"pk":{"S":"bar"},"sk":{"S":"A"},"name":{"S":"Bar"}}}},{"PutRequest":{"Item":{"pk":{"S":"baz"},"sk":{"S":"A"},"name":{"S":"Baz"}}}},{"PutRequest":{"Item":{"pk":{"S":"foo"},"sk":{"S":"A"},"name":{"S":"Foo"}}}}]}' --endpoint-url http://dynamodb:8000
     links:
       - dynamodb-local
     environment:
