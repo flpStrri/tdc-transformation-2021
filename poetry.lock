@@ -1,6 +1,6 @@
 [[package]]
 name = "aiodynamo"
-version = "21.7"
+version = "21.8"
 description = "Asyncio DynamoDB client"
 category = "main"
 optional = false
@@ -10,8 +10,8 @@ python-versions = ">=3.7,<4.0"
 yarl = ">=1.4.2,<2.0.0"
 
 [package.extras]
+httpx = ["httpx (>=0.11.1,<1.0.0)"]
 aiohttp = ["aiohttp (>=3.6.2,<4.0.0)"]
-httpx = ["httpx (>=0.11.1,<0.12.0)"]
 
 [[package]]
 name = "aiohttp"
@@ -711,11 +711,12 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.8"
-content-hash = "54b8a766d1570f009072920ffd43182d12df6bd34c08ef39cdc9a44dc5694389"
+content-hash = "07a152f81501827ee1bc302dcc40d2a629cf6ccfd1967a872c59e3db9794e20b"
 
 [metadata.files]
 aiodynamo = [
-    {file = "aiodynamo-21.7-py3-none-any.whl", hash = "sha256:f6a19fc49190c2f47cde8e03ea01a36976ac72279fe8b4223aa875e3b383080c"},
+    {file = "aiodynamo-21.8-py3-none-any.whl", hash = "sha256:7fb534d58d85b05f0f3b053eda8ab9048e26064817e8145f651d41e9c8a11dbe"},
+    {file = "aiodynamo-21.8.tar.gz", hash = "sha256:680a61b71bcec09ce47b3d009d2d9ad0d29db14881b7ad177c85696937cbcad4"},
 ]
 aiohttp = [
     {file = "aiohttp-3.7.4.post0-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:3cf75f7cdc2397ed4442594b935a11ed5569961333d49b7539ea741be2cc79d5"},
