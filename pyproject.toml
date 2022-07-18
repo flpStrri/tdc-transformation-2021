@@ -17,7 +17,7 @@ load = { "shell" = 'k6 run k6/test_script.js'}
 python = "~3.8"
 pydantic = "^1.8.2"
 uvicorn = "^0.15.0"
-fastapi = "^0.68.0"
+fastapi = "^0.79.0"
 aiodynamo = "^21.7"
 yarl = "^1.6.3"
 bcrypt = "^3.2.0"
